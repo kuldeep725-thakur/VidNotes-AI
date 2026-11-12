@@ -1,0 +1,214 @@
+.todos-page {
+  max-width: calc(var(--reading-width) + 2 * var(--space-5) + 120px);
+}
+
+.todo-counts {
+  color: var(--color-text-subtle);
+  font-size: var(--text-sm);
+}
+
+/* Shared inputs (add form + edit mode) */
+.todo-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 150px minmax(0, 200px);
+  gap: var(--space-2);
+  flex: 1;
+  min-width: 0;
+}
+
+.todo-video-select {
+  padding-right: var(--space-2);
+  color: var(--color-text-muted);
+}
+
+.todo-date-input {
+  color: var(--color-text-muted);
+}
+
+.todo-add {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.todo-add:focus-within {
+  border-color: var(--color-accent-line);
+  box-shadow: var(--glow-accent);
+}
+
+.todo-add .btn {
+  height: 40px;
+}
+
+.todos-page .notice {
+  margin-top: var(--space-4);
+}
+
+.todo-toolbar {
+  margin: var(--space-6) 0 var(--space-3);
+}
+
+/* List */
+.todo-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+.todo-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4);
+  transition: background-color var(--transition);
+}
+
+.todo-item + .todo-item {
+  border-top: 1px solid var(--color-border);
+}
+
+.todo-item:hover {
+  background: var(--color-surface-hover);
+}
+
+.todo-check {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 8px;
+  padding: 0;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-on-accent);
+  transition: border-color var(--transition), background-color var(--transition), box-shadow var(--transition);
+}
+
+.todo-check:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  box-shadow: var(--glow-focus);
+}
+
+.todo-item.done .todo-check {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+}
+
+.todo-body {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 0;
+}
+
+/* The strike-through is a background line, so it can sweep across when a
+   task is completed instead of appearing instantly. */
+.todo-title {
+  display: inline;
+  overflow-wrap: anywhere;
+  background: linear-gradient(var(--color-text-subtle), var(--color-text-subtle)) left 58% / 0% 1px no-repeat;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: color var(--transition), background-size 300ms ease;
+}
+
+.todo-item.done .todo-title {
+  color: var(--color-text-subtle);
+  background-size: 100% 1px;
+}
+
+.todo-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin-top: 2px;
+  color: var(--color-text-subtle);
+  font-size: var(--text-xs);
+}
+
+.todo-meta span,
+.todo-meta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+}
+
+.todo-meta a {
+  color: var(--color-text-muted);
+  transition: color var(--transition);
+}
+
+.todo-meta a:hover {
+  color: var(--color-accent);
+}
+
+.todo-meta .overdue {
+  color: var(--color-danger);
+}
+
+.todo-actions {
+  display: flex;
+  gap: 2px;
+  opacity: 0.6;
+  transition: opacity var(--transition);
+}
+
+.todo-item:hover .todo-actions,
+.todo-actions:focus-within {
+  opacity: 1;
+}
+
+.todo-delete:hover:not(:disabled) {
+  color: var(--color-danger);
+}
+
+/* Edit mode */
+.todo-item.editing {
+  background: var(--color-surface-raised);
+}
+
+.todo-edit {
+  display: grid;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.todo-edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+.todo-filter-empty {
+  padding: var(--space-5) 0;
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 720px) {
+  .todo-add {
+    flex-direction: column;
+  }
+
+  .todo-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .todo-title-input {
+    grid-column: 1 / -1;
+  }
+
+  .todo-actions {
+    opacity: 1;
+  }
+}
